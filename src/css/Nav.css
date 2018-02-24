@@ -39,9 +39,10 @@
 }
 .nav-bar-sub-line {
     width: 100px;
-    height: 40px;
-    border-top: 1px solid black;
+    height: 34px;
+    border-top: 2px solid black;
     text-align: center;
+    padding-top: 2px;
 }
 .nav-bar-sub-line:hover {
     background-color: lightblue;
@@ -57,5 +58,7 @@
     }
     .nav-bar-sub-line {
         text-align: right;
+        width: 96px;
+        padding-right: 4px;
     }
 }
