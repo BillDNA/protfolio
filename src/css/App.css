@@ -1,0 +1,19 @@
+.page-body {
+    width: 80vw;
+    height: 80vw;
+    position: fixed;
+    top: 100px;
+    left: 10vw;
+    display: table;
+    border: 1px solid black;
+}
+
+
+@media (max-width:500px) {
+    .page-body {
+        left: 100px;
+        top:0;
+        width: calc(100% - 110px);
+        height: calc(100vh - 2px);
+    }
+}

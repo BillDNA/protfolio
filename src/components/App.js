@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom';
 import Nav from './Nav';
 import PageNotFound from './PageNotFound';
 import UnderConstruction from "./UnderConstruction";
+import Visulizer2D from './Visualizer2D';
 //css
 import '../css/App.css';
 
@@ -25,7 +26,7 @@ class App extends Component {
 				<Nav location="Under Construction" />
 				<div className="page-body">
 					<Switch>
-						<Route exact path='/' component={UnderConstruction}/>
+						<Route exact path='/' component={Visulizer2D}/>
 						<Route path='*' component={PageNotFound}/>
 					</Switch>
 				</div>
