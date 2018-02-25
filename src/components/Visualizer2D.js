@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sketch from '../javascript/Visualizer2DSketch'
+import '../css/Visualizer2dSketch.css'
 class Visualizer2D  extends React.Component {
 	componentDidMount() {
 		Sketch();

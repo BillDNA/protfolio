@@ -3,8 +3,6 @@ import 'p5/lib/addons/p5.sound';
 //import 'p5/lib/addons/p5.dom';
 
 function sketch (p) {
-	console.log('p',p)
-	window.myp5 = p;
 	window.p5a = p5;
 
 	let mic;
@@ -47,11 +45,16 @@ function sketch (p) {
 				}
 			},
 			updateSpot: function(spot) {
-				spot.c.levels[3] -= p.map(mic.getLevel(),0,1,1,8);
-				spot.c.levels[0] = Math.max(0,spot.c.levels[0]-1);
-				spot.c.levels[1] = Math.max(0,spot.c.levels[1]-1);
-				spot.c.levels[2] = Math.max(0,spot.c.levels[2]-1);
-				if(spot.c.levels[3] <=0 ) { return undefined;}
+				const micLvl =  p.map(mic.getLevel(),0,1,1,8);
+				const r = p.red(spot.c);
+				const g = p.green(spot.c);
+				const b = p.blue(spot.c);
+				spot.c.setRed(Math.max(0,r-1));
+				spot.c.setGreen(Math.max(0,g-1));
+				spot.c.setBlue(Math.max(0,b-1));
+
+				spot.halfLife -= micLvl;
+				if(spot.halfLife <=0 || r+g+b <= 0) { return undefined;}
 				return spot;
 			},
 			drawSpot: function(spot) {
@@ -74,14 +77,19 @@ function sketch (p) {
 					x:p.width/2,
 					y:p.height/2,
 					r:0,
+					halfLife: 256,
 					c:p.color(128)};
 				A[0].past = [];
 				A[0].past.push(s);
 
-				A[0].fft = new p5.FFT();
+				A[0].fft = new window.p5a.FFT();
 				A[0].fft.setInput(mic);
 
-				if(resize) {p.resizeCanvas(p.width, p.height);}
+				if(resize) {
+					p.resizeCanvas(p.width, p.height);
+					document.getElementById('defaultCanvas0').style.width = '100%';
+					document.getElementById('defaultCanvas0').style.height = '100%';
+				}
 			},
 			newSpot: function(lastSpot) {
 				let m = mic.getLevel();
@@ -90,6 +98,7 @@ function sketch (p) {
 					x: (p.width + lastSpot.x + getRandomInt(-1, 1) * A[0].step) % p.width,
 					y: (p.height + lastSpot.y + getRandomInt(-1, 1) * A[0].step) % p.height,
 					c: buildColorFromWave(0,0,0),
+					halfLife: 256,
 					r: m
 				};
 				return newSpot;
@@ -97,11 +106,13 @@ function sketch (p) {
 		}
 	];
 	p.preload = function() {
-
-	}
+	};
 
 	p.setup = function() {
-		p.createCanvas(800,600);
+		p.createCanvas(800,800);
+
+		document.getElementById('defaultCanvas0').style.width = '100%';
+		document.getElementById('defaultCanvas0').style.height = '100%';
 		p.colorMode(p.RGB);
 		c = p.color(0);
 		A[ai].reset(false);
@@ -114,6 +125,7 @@ function sketch (p) {
 	}
 	p.windowResized = function() {
 		A[ai].reset(true);
+
 
 	}
 	p.mouseReleased = function() {
