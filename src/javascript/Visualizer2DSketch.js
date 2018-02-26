@@ -111,7 +111,8 @@ function sketch (p) {
 		fullScreen: function (isFullScreen) {
 			window.settings.isFullScreen = isFullScreen;
 			p.fullscreen(isFullScreen);
-			window.spotsArray[ai].reset(true);
+			sizeCanvas();
+			//window.spotsArray[ai].reset(true);
 		},
 		reset: function () {
 			console.log('re-setting');
@@ -124,9 +125,10 @@ function sketch (p) {
 				);
 				if(!window.settings.micAccess) {return}
 			}
-			window.patterns = []
-			//window.spotsArray[ai].reset(true);
-		}
+			window.patterns = [];
+
+		},
+
 	};
 	window.Patters = [];
 
@@ -139,9 +141,8 @@ function sketch (p) {
 		p.colorMode(p.RGB);
 		c = p.color(0);
 
-
+		sizeCanvas();
 		window.controlFunctions.reset();
-
 	};
 
 	p.draw = function() {
@@ -204,6 +205,22 @@ function sketch (p) {
 			document.getElementById('fullscreen-btn').click();
 		}
 	};
+	function sizeCanvas() {
+		if(window.settings.isFullScreen) {
+			p.resizeCanvas(800, 600);
+			document.getElementById('defaultCanvas0').classList.add('full-screen-canvas');
+			document.getElementById('defaultCanvas0').classList.remove('small-screen-canvas');
+			document.getElementById('defaultCanvas0').style.width = '100vw';
+			document.getElementById('defaultCanvas0').style.height= '100vh';
+		} else {
+			p.resizeCanvas(800, 600);
+			document.getElementById('defaultCanvas0').classList.add('small-screen-canvas');
+			document.getElementById('defaultCanvas0').classList.remove('full-screen-canvas');
+			document.getElementById('defaultCanvas0').style.width = '';
+			document.getElementById('defaultCanvas0').style.height = '';
+		}
+
+	}
 };
 export default function addSketch(){
 	new p5(sketch,'Visualizer2D');
