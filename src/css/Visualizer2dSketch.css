@@ -1,7 +1,38 @@
 canvas {
-    display: flex;
     align-items: center;
     margin: auto;
+    width: 100%;
+    height: 100%;
+}
+.full-screen-canvas {
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 100vw;
     height: 100vh;
+}
+.small-screen-canvas {
+    position: relative;
+}
+
+.page-controls {
+    position: absolute;
+    top: -100px;
+    height: 100px;
+    left: 100px;
+    width: calc(80vw - 100px);
+    background: purple;
+    z-index: 100;
+}
+.page-controls[isFullScreen=true] {
+    background: darkgrey;
+    position: fixed;
+    top: calc(100vh - 100px);
+    left: calc(100vw - 100px);
+    width: 100px;
+    height: 100px;
+}
+
+.page-controls[isFullScreen=true] label {
+    display: none;
 }

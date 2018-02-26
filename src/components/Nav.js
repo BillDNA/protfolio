@@ -14,7 +14,8 @@ class Nav  extends React.Component {
 						<p><span>A</span>lgorithms</p>
 					</div>
 					<div className="nav-bar-sub-line">{this.props.location}</div>
-
+				</div>
+				<div className="nav-bar-controls">
 				</div>
 			</div>
 		);
