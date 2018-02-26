@@ -39,7 +39,7 @@ class Visualizer2D  extends React.Component {
 						onClick={() => this.resetSketch()}
 					>
 						<label>Reset:</label>
-						<i class="fas fa-redo"></i>
+						<i className="fas fa-redo"></i>
 					</div>
 				</div>
 			</div>
