@@ -49,7 +49,7 @@ class Pattern {
 			x = (p.width + this.spots[0].x + getRandomInt(-1, 1) * this.step) % p.width;
 			y = (p.height + this.spots[0].y + getRandomInt(-1, 1) * this.step) % p.height;
 		}
-		const newSpot = new Spot(x,y,256,waveForm[0],waveForm[2],waveForm[4],roundOver); //TODO wave form is to be base on settings
+		const newSpot = new Spot(x,y,256,waveForm[0],waveForm[2],waveForm[0],roundOver); //TODO wave form is to be base on settings
 		this.spots.splice(0,0,newSpot)
 	}
 	update(p,micLvl,waveForm) {
@@ -126,7 +126,6 @@ function sketch (p) {
 				if(!window.settings.micAccess) {return}
 			}
 			window.patterns = [];
-
 		},
 
 	};
