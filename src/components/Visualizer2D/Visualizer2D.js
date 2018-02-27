@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Sketch from '../javascript/Visualizer2DSketch'
-import '../css/Visualizer2dSketch.css'
+import Sketch from '../../javascript/Visualizer2DSketch'
+import '../../css/Visualizer2dSketch.css'
 class Visualizer2D  extends React.Component {
 	constructor(props) {
 		super(props);

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Nav from './Nav';
 import PageNotFound from './PageNotFound';
 import UnderConstruction from "./UnderConstruction";
-import Visualizer2D from './Visualizer2D';
+import Visualizer2D from './Visualizer2D/Visualizer2D';
 //css
 import '../css/App.css';
 
