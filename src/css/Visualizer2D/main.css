@@ -68,71 +68,6 @@ i {
 .page-controls[isFullScreen=true]>label {
     display: none;
 }
-[data-tooltip] {
-    position: relative;
-    z-index: 2;
-    cursor: pointer;
-}
-
-
-/* Hide the tooltip content by default */
-[data-tooltip]:before,
-[data-tooltip]:after {
-    visibility: hidden;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Position tooltip to the left the element */
-[data-tooltip]:before {
-    position: absolute;
-    bottom: -4px;
-    right: 100%;
-    margin-bottom: 5px;
-    margin-left: -80px;
-    padding: 7px;
-    width: auto;
-    height: 14px;
-    white-space: nowrap;
-    display:inline;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    background-color: #000;
-    background-color: hsla(0, 0%, 20%, 0.9);
-    color: #fff;
-    content: attr(data-tooltip);
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.2;
-}
-
-/* Triangle hack to make tooltip look like a speech bubble
-[data-tooltip]:after {
-    position: absolute;
-    bottom: -4px;
-    right: 100%;
-    margin-left: -5px;
-    width: 0;
-    border-top: 5px solid #000;
-    border-top: 5px solid hsla(0.89, 20%, 20%, 0.9);
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-    content: " ";
-    font-size: 0;
-    line-height: 0;
-}*/
-
-/* Show tooltip content on hover */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
-    visibility: visible;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
-    opacity: 1;
-}
 
 
 .colors-control {
@@ -146,25 +81,32 @@ i {
 .colors-control-title {
     width:300px;
     height:16px;
-    background-color: aliceblue;
     text-align:center ;
     font-size: 16px;
 }
 .color-freq-tabs {
-    width: 60px;
+    width: 30%;
+    height: 80%;
     font-size: 14px;
     text-align:right;
     position: absolute;
-    top: 16px;
     left: 0;
     bottom: 0;
-    background: purple;
+}
+.color-freq-tab:hover {
+    background-color: slategray;
+    cursor: pointer;
+}
+.color-freq-tab[selected=true] {
+    background-color: slateblue;
 }
 
+
 .color-freq-tab {
-    width:100%;
-    height: calc(20% - 2px);
-    border: 1px solid green;
+    width:98%;
+    height: 20%;
+    padding-right: 2%;
+    background-color: lightslategrey;
 }
 .color-controls {
     width:230px;
@@ -174,4 +116,12 @@ i {
     top:16px;
     background-color: red;
     display: inline-block;
+}
+
+.color-selector-box {
+    width: 70%;
+    height: 80%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }

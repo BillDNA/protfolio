@@ -27,6 +27,7 @@ class ColorSelector  extends View {
 	get style() {
 		let style = super.style;
 		style = {... style,
+
 		};
 		return style;
 	}
@@ -51,9 +52,8 @@ class ColorSelector  extends View {
 				<SliderInput id="red-slider"
 				             defaultValue={this.state.red}
 				             fillColor={`rgb(${this.state.red},0,0)`}
-				             top='0'
 				             bottom='66%'
-				             padding='80'
+				             padding='10'
 				             setp='10'
 				             onChange={this.updateRedColor.bind(this)}
 				/>
@@ -62,11 +62,13 @@ class ColorSelector  extends View {
 				             fillColor={`rgb(0,${this.state.green},0)`}
 				             top='33%'
 				             bottom='33%'
+				             padding='10'
 				             onChange={this.updateGreenColor.bind(this)}
 				/>
 				<SliderInput id="blue-slider"
 				             top='66%'
 				             bottom='0'
+				             padding='10'
 				             fillColor={`rgb(0,0,${this.state.blue})`}
 				             defaultValue={this.state.blue}
 				             onChange={this.updateBlueColor.bind(this)}

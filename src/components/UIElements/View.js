@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../../css/UIElements/view.css';
 
 class View  extends React.Component {
 	constructor(props) {
@@ -16,47 +17,29 @@ class View  extends React.Component {
 		}
 		return this.props.id;
 	}
-	get position() { //default value - absolute
-		if(this.props.position === undefined) {
-			return 'absolute';
-		}
+	get position() {
 		return this.props.position;
 	}
-	get left() { //default value - 0
-		if(this.props.left === undefined) {
-			return 0;
-		}
+	get left() {
 		return this.props.left;
 	}
-	get right() { //default value - 0
-		if(this.props.right === undefined) {
-			return 0;
-		}
+	get right() {
 		return this.props.right;
 	}
-	get top() { //default value - 0
-		if(this.props.top === undefined) {
-			return 0;
-		}
+	get top() {
 		return this.props.top;
 	}
-	get bottom() { //default value - 0
-		if(this.props.bottom === undefined) {
-			return 0;
-		}
+	get bottom() {
 		return this.props.bottom;
 	}
-	get padding() { //default value - 0
-		if(this.props.padding === undefined) {
-			return 0;
-		}
+	get padding() {
 		return this.props.padding;
 	}
-	get margin() { //default value - 0
-		if(this.props.margin === undefined) {
-			return 0;
-		}
+	get margin() {
 		return this.props.margin;
+	}
+	get backgroundColor() {
+		return this.props.backgroundColor;
 	}
 
 	get style() {
@@ -72,12 +55,6 @@ class View  extends React.Component {
 		};
 		return style
 	}
-	get backgroundColor() { //default value - ''
-		if(this.props.backgroundColor === undefined) {
-			return '';
-		}
-		return this.props.backgroundColor;
-	}
 
 
 
@@ -89,6 +66,7 @@ class View  extends React.Component {
 			     onMouseMove={this.props.onMouseMove}
 			     onMouseDown={this.props.onMouseDown}
 			     onMouseUp={this.props.onMouseUp}
+			     onMouseLeave={this.props.onMouseLeave}
 			>
 				{this.props.children}
 			</div>

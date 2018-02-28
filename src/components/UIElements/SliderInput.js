@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import View from './View';
 
+import '../../css/UIElements/View.css';
+import '../../css/UIElements/SliderInput.css';
 class SliderInput  extends View {
 	constructor(props){
 		super(props);
@@ -28,23 +30,11 @@ class SliderInput  extends View {
 		}
 		return this.props.max;
 	}
-	get step() {
-		if(this.props.max === undefined) {
-			return 256;
-		}
-		return this.props.max;
-	}
 	get step() { //default value - 1
 		if (this.props.step === undefined) {
 			return 1;
 		}
 		return this.props.step;
-	}
-	get defaultValue() { //default value - 0
-		if(this.props.defaultValue === undefined) {
-			return 128;
-		}
-		return this.props.defaultValue;
 	}
 	get style() {
 		let style = super.style;
@@ -53,33 +43,18 @@ class SliderInput  extends View {
 		};
 		return style;
 	}
-	get width() { //default value - ‘100%'
-		if(this.props.width === undefined) {
-			return '100%';
-		}
-		return this.props.width+'%';
-	}
 	onChange(element) {
 		if(this.props.onChange !== undefined) {
 			this.props.onChange(element.target.value);
 		}
 	}
-	get indicatorColor() { //default value - white
-		if(this.props.indicatorColor === undefined) {
-			return 'white';
-		}
+	get indicatorColor() {
 		return this.props.indicatorColor;
 	}
-	get fillColor() { //default value - green
-		if(this.props.fillColor === undefined) {
-			return 'green';
-		}
+	get fillColor() {
 		return this.props.fillColor;
 	}
-	get remainingColor() { //default value - lightgray
-		if(this.props.remainingColor === undefined) {
-			return 'lightgray';
-		}
+	get remainingColor() {
 		return this.props.remainingColor;
 	}
 	get percentValue() {
@@ -122,32 +97,25 @@ class SliderInput  extends View {
 	onMouseDown(event) {
 		this.setState({mouseDown:true})
 	}
+	onMouseLeave(event) {
+		if(this.state.mouseDown) {
+			this.setState({mouseDown: false, previewValue:this.state.value});
+		}
+	}
 	render() {
 		const indicatorStyle = {
 			backgroundColor: this.indicatorColor,
-			width: '10px',
-			height: '80%',
-			top: '10%',
 			left: `calc(${100*this.percentValue}% + ${(0.5 - this.percentValue)*this.padding*2}px)`,
-			position:'absolute',
-			borderRadius: '4px'
 		};
 		const fillStyle = {
 			backgroundColor: this.fillColor,
-			height: '30%',
-			top: '35%',
 			left: this.padding+'px',
-			border: '1px solid black' ,
 			right: `calc(${100 - 100*this.percentValue}% + ${(0.5-(1-this.percentValue))*this.padding*2}px)`,
-			position:'absolute'
 		};
 		const remainingStyle = {
 			backgroundColor: this.remainingColor,
 			right: this.padding+'px',
 			left: `calc(${100*this.percentValue}% + ${(0.5 - this.percentValue)*this.padding*2}px )`,
-			top: '35%',
-			height: '30%',
-			position:'absolute'
 		};
 		let preview;
 		if(this.state.mouseDown) {
@@ -165,10 +133,11 @@ class SliderInput  extends View {
 			      onMouseMove={this.onMouseMove.bind(this)}
 			      onMouseDown={this.onMouseDown.bind(this)}
 			      onMouseUp={this.onMouseUp.bind(this)}
+			      onMouseLeave={this.onMouseLeave.bind(this)}
 			>
-				<div className={'slider-input-filled'} style={fillStyle}>
+				<div className={'slider-input-bar slider-input-filled'} style={fillStyle}>
 				</div>
-				<div className={'slider-input-remaining'} style={remainingStyle}>
+				<div className={'slider-input-bar slider-input-remaining'} style={remainingStyle}>
 				</div>
 				<div className={'slider-input-indicator'} style={indicatorStyle}>
 				</div>

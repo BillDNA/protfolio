@@ -1,0 +1,26 @@
+.slider-input {
+
+}
+.slider-input-bar {
+    position:absolute;
+    height: 30%;
+    top: 35%;
+    border: 1px solid black;
+}
+.slider-input-remaining {
+    background-color: lightgray;
+}
+.slider-input-filled {
+    background-color: green;
+}
+.slider-input-indicator {
+    position:absolute;
+    border-radius: 4px;
+    width: 10px;
+    height: 80%;
+    top:10%;
+    background-color: red;
+}
+.slider-input-preview {
+    position:absolute;
+}

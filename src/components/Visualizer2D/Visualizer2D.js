@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import ColorSelector from './Controls/ColorSelector';
+
+
+
+
 import Sketch from '../../javascript/Visualizer2DSketch'
-import '../../css/Visualizer2dSketch.css'
+import '../../css/Visualizer2D/main.css'
 class Visualizer2D  extends React.Component {
 	constructor(props) {
 		super(props);
@@ -26,13 +32,14 @@ class Visualizer2D  extends React.Component {
 	}
 	render() {
 		const fullScreen = this.state.isFullScreen ? (<i className="fas fa-window-close"></i>) : (<i className="fas fa-expand-arrows-alt"></i>);
-		const showControls = this.state.showingControls ? (<i class="fas fa-eye-slash"></i>) : (<i class="fas fa-eye"></i>);
+		const showControls = this.state.showingControls ? (<i className="fas fa-eye-slash"></i>) : (<i className="fas fa-eye"></i>);
 		const conrtolsToolTip = this.state.showingControls ? "Hide controls" : "Show controls";
+
 		return (
 			<div className="Visualizer2D" id="Visualizer2D">
 				<div className="page-controls"
 				     isfullscreen={this.state.isFullScreen.toString()}
-				     showControls={this.state.showingControls.toString()}>
+				     showcontrols={this.state.showingControls.toString()}>
 					<div className="control-section colors-control">
 						<div className="colors-control-title">Colors</div>
 						<div className="color-freq-tabs">
@@ -42,10 +49,8 @@ class Visualizer2D  extends React.Component {
 							<div className="color-freq-tab high-mid">High Mid</div>
 							<div className="color-freq-tab treble">Treble</div>
 						</div>
-						<div className="color-controls">
-							<div className='color-slider'>
-								<input type='range' min='0' max='0'/>
-							</div>
+						<div className='color-selector-box'>
+							<ColorSelector />
 						</div>
 					</div>
 					<div className="control-section">
