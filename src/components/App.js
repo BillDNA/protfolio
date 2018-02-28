@@ -10,6 +10,7 @@ import Visualizer2D from './Visualizer2D/Visualizer2D';
 import '../css/App.css';
 
 
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -36,9 +37,5 @@ class App extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	console.log('state', state);
-	return state;
-}
+export default App;
 
-export default connect(mapStateToProps, null)(App);

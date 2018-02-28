@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import View from './View';
 
-import '../../css/UIElements/View.css';
+import '../../css/UIElements/view.css';
 import '../../css/UIElements/SliderInput.css';
 class SliderInput  extends View {
 	constructor(props){

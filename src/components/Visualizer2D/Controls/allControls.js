@@ -1,5 +1,5 @@
 import React, {component} from 'react';
-import
+
 
 class V2DControls  extends React.Component {
 	render() {

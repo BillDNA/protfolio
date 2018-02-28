@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import ColorSelector from './Controls/ColorSelector';
 
@@ -78,16 +77,4 @@ class Visualizer2D  extends React.Component {
 		);
 	}
 }
-
-function mapStateToProps(state) {
-	return state
-}
-const mapDispatchToProps = (dispatch) => {
-	return {
-	}
-}
-
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps)(Visualizer2D);
+export default Visualizer2D;

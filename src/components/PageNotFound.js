@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ColorSelector from './Visualizer2D/Controls/ColorSelector';
-import SliderInput from "./UIControllElements/SliderInput";
+import SliderInput from "./UIElements/SliderInput";
 
 class PageNotFound  extends React.Component {
 	constructor(props) {

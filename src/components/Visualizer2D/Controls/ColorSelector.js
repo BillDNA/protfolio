@@ -1,6 +1,6 @@
 import React from 'react';
-import View from '../../UIControllElements/View'
-import SliderInput from '../../UIControllElements/SliderInput'
+import View from '../../UIElements/View'
+import SliderInput from '../../UIElements/SliderInput'
 
 class ColorSelector  extends View {
 	constructor(props) {
