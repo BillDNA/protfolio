@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import View from './View';
+import styled from 'styled-components';
 
+
+import View from './View';
+const SliderInput = View.extend`
+
+`;
+/*
 import '../../css/UIElements/view.css';
 import '../../css/UIElements/SliderInput.css';
 class SliderInput  extends View {
@@ -146,5 +152,6 @@ class SliderInput  extends View {
 		);
 	}
 }
+ */
 
 export default SliderInput;

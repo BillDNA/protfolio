@@ -7,6 +7,7 @@ import ColorSelector from './Controls/ColorSelector';
 
 import Sketch from '../../javascript/Visualizer2DSketch'
 import '../../css/Visualizer2D/main.css'
+
 class Visualizer2D  extends React.Component {
 	constructor(props) {
 		super(props);

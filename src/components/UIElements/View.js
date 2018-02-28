@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
-import '../../css/UIElements/view.css';
+import styled from 'styled-components';
+
+const View = styled.div`
+	background-color: ${props => props['background-color']};
+	position: absolute;
+	left: ${props => props.left === undefined ? 0 : props.left};
+	right: ${props => props.right === undefined ? 0 : props.right};
+	bottom: ${props => props.bottom === undefined ? 0 : props.bottom};
+	top: ${props => props.top === undefined ? 0 : props.top};
+`;
+/*
 
 class View  extends React.Component {
 	constructor(props) {
@@ -55,9 +65,6 @@ class View  extends React.Component {
 		};
 		return style
 	}
-
-
-
 	render() {
 		return (
 			<div className={this.className}
@@ -73,5 +80,5 @@ class View  extends React.Component {
 		);
 	}
 }
-
+*/
 export default View;
