@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 //components
-import Nav from './Nav';
-import PageNotFound from './PageNotFound';
-import UnderConstruction from "./UnderConstruction";
-import Visualizer2D from './Visualizer2D/Visualizer2D';
+import Grid from './UIElements/Gird';
+import Logo from './UIElements/Logo';
+import Control from './UIElements/Control';
+import Page from './UIElements/Page';
+import Location from './UIElements/Location';
+import NavBtn from './UIElements/NavBtn';
 //css
 
 import SliderInput from './UIElements/SliderInput';
@@ -14,20 +16,36 @@ import View from './UIElements/View.js'
 class App extends Component {
 	constructor(props) {
 		super(props);
-	}
-	renderPage(pageName) {
-		if(pageName==='Under Construction') {
-
-		} else {
-			return (<PageNotFound/>);
+		this.state = {
+			menuShowing: false
 		}
+	}
+	showMenu() {
+		this.setState({menuShowing: true})
 	}
 	render() {
 		return (
-			<View className="App" left='10%' right='10%' top='10%'>
-				View
-				<SliderInput top='35%' bottom='35%' background-color='purple'> slider </SliderInput>
-			</View>
+			<Grid>
+				<Logo background-color={'green'}>
+					Logo
+				</Logo>
+				<Control background-color={'blue'}>
+					controls
+				</Control>
+				<Page background-color={'purple'}>
+					Page
+				</Page>
+				<Location
+					background-color={'orange'}
+					expanded={this.state.menuShowing}
+					nativeOnClick={() => this.showMenu}
+				>
+					<NavBtn background-color={'yellow'}>Current</NavBtn>
+					<NavBtn background-color={'lightgray'}>Home</NavBtn>
+					<NavBtn background-color={'gray'}>About</NavBtn>
+					<NavBtn background-color={'lightgray'}>Contact</NavBtn>
+				</Location>
+			</Grid>
 		)
 	}
 	/*
