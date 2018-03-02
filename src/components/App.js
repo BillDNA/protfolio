@@ -9,7 +9,7 @@ import Page from './UIElements/Page';
 import Location from './UIElements/Location';
 import NavBtn from './UIElements/NavBtn';
 //css
-
+import '../css/App.css';
 import SliderInput from './UIElements/SliderInput';
 import View from './UIElements/View.js'
 
@@ -22,6 +22,9 @@ class App extends Component {
 	}
 	showMenu() {
 		this.setState({menuShowing: true})
+	}
+	hideMenu() {
+		this.setState({menuShowing: false})
 	}
 	render() {
 		return (
@@ -38,12 +41,21 @@ class App extends Component {
 				<Location
 					background-color={'orange'}
 					expanded={this.state.menuShowing}
-					nativeOnClick={() => this.showMenu}
+					onClick={() => this.showMenu()}
+					onMouseLeave={() => this.hideMenu()}
 				>
-					<NavBtn background-color={'yellow'}>Current</NavBtn>
-					<NavBtn background-color={'lightgray'}>Home</NavBtn>
-					<NavBtn background-color={'gray'}>About</NavBtn>
-					<NavBtn background-color={'lightgray'}>Contact</NavBtn>
+					<NavBtn expanded={this.state.menuShowing}
+					        background-color={'yellow'}>
+						Current</NavBtn>
+					<NavBtn expanded={this.state.menuShowing}
+					        background-color={'lightgray'}>
+						Home</NavBtn>
+					<NavBtn expanded={this.state.menuShowing}
+					        background-color={'gray'}>
+						About</NavBtn>
+					<NavBtn expanded={this.state.menuShowing}
+					        background-color={'lightgray'}>
+						Contact</NavBtn>
 				</Location>
 			</Grid>
 		)
