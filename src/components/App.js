@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
+import DropdownMenu from 'react-dd-menu';
+import 'react-dd-menu/dist/react-dd-menu.min.css'
 //components
 import Grid from './UIElements/Gird';
 import Logo from './UIElements/Logo';
@@ -17,16 +19,27 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			menuShowing: false
+			isMenuOpen: false,
+			currentLocation: 'Home'
 		}
 	}
 	showMenu() {
-		this.setState({menuShowing: true})
+		this.setState({isMenuOpen: true})
 	}
 	hideMenu() {
-		this.setState({menuShowing: false})
+		this.setState({isMenuOpen: false})
 	}
 	render() {
+		const menuOptions = {
+			isOpen: this.state.isMenuOpen,
+			close: this.hideMenu.bind(this),
+			toggle: <Location
+				onClick={() => this.showMenu()}
+			>{this.state.currentLocation}</Location>,
+			leaveTimeout: 150,
+			align: 'center',
+			closeOnOutsideClick: true,
+		};
 		return (
 			<Grid>
 				<Logo background-color={'green'}>
@@ -38,28 +51,34 @@ class App extends Component {
 				<Page background-color={'purple'}>
 					Page
 				</Page>
-				<Location
-					background-color={'orange'}
-					expanded={this.state.menuShowing}
-					onClick={() => this.showMenu()}
-					onMouseLeave={() => this.hideMenu()}
-				>
-					<NavBtn expanded={this.state.menuShowing}
-					        background-color={'yellow'}>
-						Current</NavBtn>
-					<NavBtn expanded={this.state.menuShowing}
-					        background-color={'lightgray'}>
-						Home</NavBtn>
-					<NavBtn expanded={this.state.menuShowing}
-					        background-color={'gray'}>
-						About</NavBtn>
-					<NavBtn expanded={this.state.menuShowing}
-					        background-color={'lightgray'}>
-						Contact</NavBtn>
-				</Location>
+				<DropdownMenu {...menuOptions}>
+					<li><a href="#">Example 1</a></li>
+					<li><button type="button" onClick={this.click}>Example 2</button></li>
+				</DropdownMenu>
 			</Grid>
 		)
 	}
+
+	/*
+	<Location
+		background-color={'orange'}
+		expanded={this.state.menuShowing}
+		onClick={() => this.showMenu()}
+		onMouseLeave={() => this.hideMenu()}
+	>
+		<NavBtn expanded={this.state.menuShowing}
+				background-color={'yellow'}>
+			Current</NavBtn>
+		<NavBtn expanded={this.state.menuShowing}
+				background-color={'lightgray'}>
+			Home</NavBtn>
+		<NavBtn expanded={this.state.menuShowing}
+				background-color={'gray'}>
+			About</NavBtn>
+		<NavBtn expanded={this.state.menuShowing}
+				background-color={'lightgray'}>
+			Contact</NavBtn>
+	</Location>*/
 	/*
 	render() {
 		return (
