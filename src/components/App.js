@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom';
-import { connect } from 'react-redux';
+import {Link,Switch, Route,Redirect} from 'react-router-dom';
 import DropdownMenu from 'react-dd-menu';
 import 'react-dd-menu/dist/react-dd-menu.min.css'
 //components
@@ -9,7 +8,9 @@ import Logo from './UIElements/Logo';
 import Control from './UIElements/Control';
 import Page from './UIElements/Page';
 import Location from './UIElements/Location';
-import NavBtn from './UIElements/NavBtn';
+//Pages
+import PageNotFound from './PageNotFound';
+import Visualizer2D from './Visualizer2D/Visualizer2D';
 //css
 import '../css/App.css';
 import SliderInput from './UIElements/SliderInput';
@@ -20,7 +21,7 @@ class App extends Component {
 		super(props);
 		this.state = {
 			isMenuOpen: false,
-			currentLocation: 'Home'
+			currentLocation: "Home"
 		}
 	}
 	showMenu() {
@@ -30,14 +31,23 @@ class App extends Component {
 		this.setState({isMenuOpen: false})
 	}
 	render() {
+		const Loc = ({ location }) => {
+			console.log('match',location);
+			return (
+				<Location onClick={() => this.showMenu()}// this.showMenu()}
+				> {
+					location.pathname.length > 1 ?
+						location.pathname.slice(1,location.pathname.length).capitalize() :
+						"Home"
+				}</Location>
+			);
+		};
 		const menuOptions = {
 			isOpen: this.state.isMenuOpen,
 			close: this.hideMenu.bind(this),
-			toggle: <Location
-				onClick={() => this.showMenu()}
-			>{this.state.currentLocation}</Location>,
+			toggle: <Route component={Loc} />,
 			leaveTimeout: 150,
-			align: 'center',
+			align: 'left',
 			closeOnOutsideClick: true,
 		};
 		return (
@@ -49,11 +59,17 @@ class App extends Component {
 					controls
 				</Control>
 				<Page background-color={'purple'}>
-					Page
+					<Switch>
+						<Route name="home" path='/' component={Visualizer2D}/>
+						<Route name="home" path='/home' component={Visualizer2D}/>
+						<Route name="404" component={PageNotFound} />
+
+					</Switch>
 				</Page>
 				<DropdownMenu {...menuOptions}>
-					<li><a href="#">Example 1</a></li>
-					<li><button type="button" onClick={this.click}>Example 2</button></li>
+					<li><Link to='/Home' >Home</Link></li>
+					<li><Link to='/about' >About</Link></li>
+					<li><Link to='/visualizer' >Visualizer</Link></li>
 				</DropdownMenu>
 			</Grid>
 		)
@@ -93,7 +109,10 @@ class App extends Component {
 			</div>
 		);
 	}*/
+}
 
+String.prototype.capitalize = function() {
+	return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 export default App;
